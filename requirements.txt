@@ -1,5 +1,5 @@
 spotipy
-os
+# os
 tensorflow
 streamlit
 requests
@@ -13,18 +13,20 @@ opencv-python
 #------------------------
 # for the face_detect_module
 # os
-opencv-python # cv2
+# opencv-python # cv2
+opencv-python-headless
 mediapipe
-math
+# math
 numpy
-time
+# time
 
-warnings
+# warnings
 
 torch
-torch.nn
-torch.nn.functional
-PIL
+# torch.nn
+# torch.nn.functional
+# PIL
+pillow
 torchvision
 #------------------------
 #########################
