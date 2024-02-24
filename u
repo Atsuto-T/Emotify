@@ -1,0 +1,296 @@
+[33mcommit 4b1378d5f45cbe19e96fc5381d64687a62ab6e8f[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: e8b3dd6 21dac8a
+Author: krystia lewis <lewiskrystia001@gmail.com>
+Date:   Tue Feb 20 19:58:51 2024 +0900
+
+    Merge branch 'streamlit_ux_krystiaL' of github.com:Atsuto-T/Music_Selector_Project
+
+[33mcommit 21dac8a85008061bd59fe3bc910c4076438bb431[m
+Author: krystia lewis <lewiskrystia001@gmail.com>
+Date:   Tue Feb 20 19:47:18 2024 +0900
+
+    changed the 3.10.6 env to Music_Selector_Project but the Music_Selector_Project dir was deleted
+
+[33mcommit afef9bed3651113e2cbca803805551c8ed1119af[m
+Author: krystia lewis <lewiskrystia001@gmail.com>
+Date:   Tue Feb 20 19:27:54 2024 +0900
+
+    changed <music_selector_project> pyenv <Music_Selector_Project> to match the mate rbranch pyenv
+
+[33mcommit 9ae013fd6e34f36a24a5d1a89e47b253bfe0f74b[m
+Author: krystia lewis <lewiskrystia001@gmail.com>
+Date:   Sat Feb 17 18:25:30 2024 +0900
+
+    moved interface folder to parent directory
+
+[33mcommit 417399aea472a73fc8fe3cd666dd19d463db2d70[m
+Author: krystia lewis <lewiskrystia001@gmail.com>
+Date:   Sat Feb 17 17:12:12 2024 +0900
+
+    renamed ux.py >> ux_upload.py; modified ux_video.py and got the camera input to work
+
+[33mcommit e8b3dd6a22b869eb6b1ac74f9bfe1e9941ae2a20[m
+Merge: d1a645d db3ef76
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Sat Feb 17 16:01:57 2024 +0900
+
+    Merge branch 'master' of github.com:Atsuto-T/Music_Selector_Project
+
+[33mcommit d1a645df448318ca260dada14113a4836c36d24a[m
+Merge: a946683 c673f38
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Sat Feb 17 15:51:33 2024 +0900
+
+    Fixed structures in master
+
+[33mcommit 38d97b8211e50a03f37d4abd87b7ca6c33306778[m
+Author: krystia lewis <lewiskrystia001@gmail.com>
+Date:   Sat Feb 17 15:16:48 2024 +0900
+
+    made changes to ux makefile and added instruction flow to the ui
+
+[33mcommit db3ef76152f7489532b7d23a337786cede8dd781[m
+Merge: 8681259 c673f38
+Author: Atsuto-T <143784685+Atsuto-T@users.noreply.github.com>
+Date:   Sat Feb 17 14:44:47 2024 +0900
+
+    Merge pull request #1 from Atsuto-T/generate_playlist
+    
+    Generate playlist
+
+[33mcommit c673f3839384d670b062c91ed965599e69cf850a[m[33m ([m[1;31morigin/generate_playlist[m[33m)[m
+Merge: 97765b5 8681259
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Sat Feb 17 14:40:19 2024 +0900
+
+    Merge branch 'master' of github.com:Atsuto-T/Music_Selector_Project into generate_playlist
+
+[33mcommit a94668351cc369ef8ee24002a96a7ce963e39bdd[m
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Sat Feb 17 14:23:50 2024 +0900
+
+    Removed pycache
+
+[33mcommit 97765b55f79ec5e75294ce38059c71fcaa963321[m
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Sat Feb 17 11:57:29 2024 +0900
+
+    Added requirements.txt
+
+[33mcommit 6bde258106796c64ff84566bf7a2f58794f97a29[m
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Fri Feb 16 20:58:49 2024 +0900
+
+    URL sent as an embedding
+
+[33mcommit 9a3dca0b306a38ca6d1b1c99df68871c3d42c073[m
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Fri Feb 16 16:46:36 2024 +0900
+
+    Minor fix
+
+[33mcommit 963d2f1242f999ec4518b2a5dcbb7313f6734aa2[m
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Fri Feb 16 16:43:12 2024 +0900
+
+    Debugged several functions.Added Makefile
+
+[33mcommit 8681259b77107af7c3bc7547524bed82fbb1265a[m
+Author: daisuke kurata <999traum@gmail.com>
+Date:   Thu Feb 15 21:46:32 2024 +0900
+
+    checkpoint
+
+[33mcommit e08d1caa4ec8a230e2044a97e36bc9b67871ccb7[m
+Author: krystia lewis <lewiskrystia001@gmail.com>
+Date:   Thu Feb 15 21:42:56 2024 +0900
+
+    updated ux code
+
+[33mcommit 33073ed869276e546c462c35a2893e9ddc3c47b3[m
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Thu Feb 15 20:52:11 2024 +0900
+
+    last push before merging
+
+[33mcommit dddd9bd2558cb1afd0593fa0fe8e6796ec89ddc0[m
+Author: daisuke kurata <999traum@gmail.com>
+Date:   Thu Feb 15 20:39:43 2024 +0900
+
+    checkpoint
+
+[33mcommit e5aeb6922f8ba9fcd3827deec83935802f2c6c23[m
+Author: daisuke kurata <999traum@gmail.com>
+Date:   Thu Feb 15 20:35:15 2024 +0900
+
+    checkpoint
+
+[33mcommit cee8b5d2fe0d62877974ce5ab188343a3d16ffa9[m
+Author: daisuke kurata <999traum@gmail.com>
+Date:   Thu Feb 15 20:30:44 2024 +0900
+
+    checkpoint
+
+[33mcommit e4962cd995cd034940a1639d2c58e3260d2b6592[m
+Author: krystia lewis <lewiskrystia001@gmail.com>
+Date:   Thu Feb 15 20:29:05 2024 +0900
+
+    added opencv-python as requirement--will be used for video input later
+
+[33mcommit aa5daf76a65159a762804ca55baea5c8b84b1c9c[m
+Author: daisuke kurata <999traum@gmail.com>
+Date:   Thu Feb 15 20:27:38 2024 +0900
+
+    checkpoint
+
+[33mcommit c841f3720eb360922d97b5b0dd73a4837a1623d0[m
+Author: krystia lewis <lewiskrystia001@gmail.com>
+Date:   Thu Feb 15 20:26:51 2024 +0900
+
+    added a draft file for video input
+
+[33mcommit c365d96bb180eb5372d2150dd0abbfa44ec49669[m
+Author: krystia lewis <lewiskrystia001@gmail.com>
+Date:   Thu Feb 15 20:20:42 2024 +0900
+
+    added makefile, gitignore, and initial ux.py for the web interface--unfinished
+
+[33mcommit 6abac2ae90589149ce68dc724886f0efdf1bd2cd[m
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Thu Feb 15 20:20:34 2024 +0900
+
+    Bug fixes on generage_playlist function
+
+[33mcommit 02f91347526ad80b11ad495c920a1f9c20000e96[m
+Author: daisuke kurata <999traum@gmail.com>
+Date:   Thu Feb 15 20:12:27 2024 +0900
+
+    checkpoint
+
+[33mcommit 01ce8d8033a05f524344627082cb6be98f2d266e[m
+Author: daisuke kurata <999traum@gmail.com>
+Date:   Thu Feb 15 20:05:38 2024 +0900
+
+    checkpoint
+
+[33mcommit 61a7e70ade10dbe2527c6dbe77ac4841c6d266f1[m
+Author: daisuke kurata <999traum@gmail.com>
+Date:   Thu Feb 15 20:03:21 2024 +0900
+
+    checkpoint
+
+[33mcommit 0399cb1ee564499e999fd70ea2f57b71bae28a6c[m
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Thu Feb 15 11:56:22 2024 +0900
+
+    Added new function
+
+[33mcommit 131e954dcabecd08c35cb93ef4160d5ae43816c9[m
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Wed Feb 14 19:21:06 2024 +0900
+
+    Minor fixes
+
+[33mcommit 041ceb4fe8312036dc392e584430b31e65a5d975[m
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Wed Feb 14 18:57:07 2024 +0900
+
+    Adding database
+
+[33mcommit ac1b1aad24d3a48c8491cb9f816255e8445da74f[m
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Wed Feb 14 18:45:35 2024 +0900
+
+    Added jupyter notebook
+
+[33mcommit b4d6ef702ea2570fefa68c69e74a1188121bfd35[m
+Author: daisuke kurata <999traum@gmail.com>
+Date:   Wed Feb 14 18:42:38 2024 +0900
+
+    music label datafiles
+
+[33mcommit 80b955c4e786b85479c3a3189f61da7fd75226ac[m
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Wed Feb 14 18:10:00 2024 +0900
+
+    Added tailor dataframe function
+
+[33mcommit 87fd0862e4267ebe74e8cdbc48fbd741c64bb969[m
+Author: daisuke kurata <999traum@gmail.com>
+Date:   Tue Feb 13 22:54:56 2024 +0900
+
+    create a branch
+
+[33mcommit 6fd5764579f1e7b23c7f4571a112bfece6eda1d2[m
+Author: krystia lewis <lewiskrystia001@gmail.com>
+Date:   Tue Feb 13 21:30:02 2024 +0900
+
+    deleted redundant folders; reorganized interface directory; added pycache and init file
+
+[33mcommit 452ac3a4059624245e42d9ff280a667fd64e395b[m
+Author: krystia lewis <lewiskrystia001@gmail.com>
+Date:   Tue Feb 13 21:14:53 2024 +0900
+
+    moved interface folder in music-selector directory to have a cleaner tree
+
+[33mcommit 60ca66aa8efa5caa11ceb6be900056bdedb8d01e[m
+Author: krystia lewis <lewiskrystia001@gmail.com>
+Date:   Tue Feb 13 20:36:19 2024 +0900
+
+    initialized set-up for interface folder and files
+
+[33mcommit a835d410bae49664d45c354756befa4081269352[m
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Sun Feb 11 18:41:27 2024 +0900
+
+    Changed the title of output playlist
+
+[33mcommit 8d99f364551ecb86a27de46be909323bd7ee27d5[m
+Merge: 813c815 e3261aa
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Sun Feb 11 18:07:53 2024 +0900
+
+    Merge branch 'generate_playlist' of github.com:Atsuto-T/Music_Selector_Project into generate_playlist
+    Update after mistakenly commiting .env file.
+
+[33mcommit 813c815e23c8547d3bfb3306703d49ab8368d0c3[m
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Sun Feb 11 18:06:09 2024 +0900
+
+    Minor changes
+
+[33mcommit 21099ce80cbba0088fb990a34f682fc6846f1680[m
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Sun Feb 11 17:48:22 2024 +0900
+
+    Added params.py file, .envrc file
+
+[33mcommit e3261aababf49f833a2f00c12f858b6e0b5aaf0c[m
+Author: Atsuto-T <143784685+Atsuto-T@users.noreply.github.com>
+Date:   Sat Feb 10 14:48:14 2024 +0900
+
+    Delete .env
+
+[33mcommit d8177889db11482086b85554528bb407f8604cab[m
+Author: Atsuto-T <143784685+Atsuto-T@users.noreply.github.com>
+Date:   Sat Feb 10 14:44:53 2024 +0900
+
+    Update .env
+
+[33mcommit 41572b2a82f14027f790e2cc04e19da1f3cee2c5[m
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Sat Feb 10 14:43:20 2024 +0900
+
+    Generate playlist part
+
+[33mcommit e644bf3c67084a13966a188a15c34f4b6e6042ef[m
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Sat Feb 10 09:34:49 2024 +0900
+
+    Add raw_data to .gitignore
+
+[33mcommit ff563524899ae189a97a501cde65b18724994166[m
+Author: Atsuto Tatsumi <atsutout@gmail.com>
+Date:   Sat Feb 10 09:33:26 2024 +0900
+
+    kickstart project

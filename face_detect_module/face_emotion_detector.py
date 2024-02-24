@@ -413,10 +413,11 @@ def extract_emotion(input_file, pth_backbone_model, lstm_features):
 
             frame = display_FPS(frame, 'FPS: {0:.1f}'.format(1 / (t2 - t1)), box_scale=.5)  # Upper right corner tag display "FPS: x.x"
 
-            cv2.imshow('Webcam', frame)
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                print("quit")
-                break
+# commented this out to skip showing the video to the screen
+            # cv2.imshow('Webcam', frame)
+            # if cv2.waitKey(1) & 0xFF == ord('q'):
+            #     print("quit")
+            #     break
 
         ######################################################
         ################ F O R    S A N I T Y ################
@@ -434,7 +435,8 @@ def extract_emotion(input_file, pth_backbone_model, lstm_features):
         ######################################################
 
         cap.release()
-        cv2.destroyAllWindows()
+# commented this out to skip showing the video to the screen
+        # cv2.destroyAllWindows()
     return video_emotions, emotions_weight
 #-----------------------------------------------------------------------#
 #########################################################################
@@ -507,19 +509,19 @@ extract_emotion(input_file, pth_backbone_model, lstm_features)
 #########################################################################
 #-----------------------------------------------------------------------#
 ###Edited by Atsuto-T###
-def export_emotion():
-    lstm_features = [] #Provided by UI module
-    input_file = 'model_files/IMG_0535.mov'
-    #picture
-    pth_backbone_model = ResNet50(7, channels=3)
-    pth_backbone_model.load_state_dict(torch.load('model_files/FER_static_ResNet50_AffectNet.pt'))
-    pth_backbone_model.eval()
-    #video
-    pth_LSTM_model = LSTMPyTorch()
-    pth_LSTM_model.load_state_dict(torch.load('model_files/FER_dinamic_LSTM_{0}.pt'.format(name_LSTM_model)))
-    pth_LSTM_model.eval()
+# def export_emotion():
+#     lstm_features = [] #Provided by UI module
+#     input_file = 'model_files/IMG_0535.mov'
+#     #picture
+#     pth_backbone_model = ResNet50(7, channels=3)
+#     pth_backbone_model.load_state_dict(torch.load('model_files/FER_static_ResNet50_AffectNet.pt'))
+#     pth_backbone_model.eval()
+#     #video
+#     pth_LSTM_model = LSTMPyTorch()
+#     pth_LSTM_model.load_state_dict(torch.load('model_files/FER_dinamic_LSTM_{0}.pt'.format(name_LSTM_model)))
+#     pth_LSTM_model.eval()
 
-    input_file = input_file_proc(input_file=input_file) #provided by UI module
+#     input_file = input_file_proc(input_file=input_file) #provided by UI module
 
-    emotion_weight = extract_emotion(input_file=input_file, pth_backbone_model=pth_backbone_model, lstm_features=lstm_features)
-    return emotion_weight
+#     emotion_weight = extract_emotion(input_file=input_file, pth_backbone_model=pth_backbone_model, lstm_features=lstm_features)
+#     return emotion_weight

@@ -443,7 +443,10 @@ def extract_emotion(input_file, pth_backbone_model, lstm_features):
 
 mp_face_mesh = mp.solutions.face_mesh
 
-name_backbone_model = 'FER_static_ResNet50_AffectNet.pt'
+# notebooks/detector.py
+
+# notebooks/FER_dinamic_LSTM_Aff-Wild2.pt
+name_backbone_model = 'notebooks/FER_static_ResNet50_AffectNet.pt'  # 'FER_static_ResNet50_AffectNet.pt'
 # name_LSTM_model = 'IEMOCAP'
 # name_LSTM_model = 'CREMA-D'
 # name_LSTM_model = 'RAMAS'
@@ -458,7 +461,7 @@ pth_backbone_model.load_state_dict(torch.load(name_backbone_model))
 pth_backbone_model.eval()
 
 pth_LSTM_model = LSTMPyTorch()
-pth_LSTM_model.load_state_dict(torch.load('FER_dinamic_LSTM_{0}.pt'.format(name_LSTM_model)))
+pth_LSTM_model.load_state_dict(torch.load('notebooks/FER_dinamic_LSTM_{0}.pt'.format(name_LSTM_model)))
 pth_LSTM_model.eval()
 
 
@@ -483,7 +486,7 @@ DICT_EMO = {
 
 # DETERMINE input_file type:
 ## testing files:
-input_file = 'laugh.png'  # 'face.png'  # 'IMG_5221.MOV'  # 'IMG_0535.mov'  # 'facess.png'  # 'face.tif'  # 'face.jpg'  # 'face.png'  # 'IMG_5221.MOV'  # IMG_0509.MOV  # image_file
+input_file = 'IMG_5221.MOV'  # 'face.png'  # 'laugh.png'  # 'IMG_0535.mov'  # 'facess.png'  # 'face.tif'  # 'face.jpg'  # 'face.png'  # 'IMG_5221.MOV'  # IMG_0509.MOV  # image_file
 
 # Received from Krystia's UI
 input_file = input_file
