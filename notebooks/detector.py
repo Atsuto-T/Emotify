@@ -483,7 +483,7 @@ DICT_EMO = {
 
 # DETERMINE input_file type:
 ## testing files:
-input_file = 'face.png'  # 'IMG_5221.MOV'  # 'IMG_0535.mov'  # 'facess.png'  # 'face.tif'  # 'face.jpg'  # 'face.png'  # 'IMG_5221.MOV'  # IMG_0509.MOV  # image_file
+input_file = 'laugh.png'  # 'face.png'  # 'IMG_5221.MOV'  # 'IMG_0535.mov'  # 'facess.png'  # 'face.tif'  # 'face.jpg'  # 'face.png'  # 'IMG_5221.MOV'  # IMG_0509.MOV  # image_file
 
 # Received from Krystia's UI
 input_file = input_file
