@@ -21,8 +21,14 @@ install_requirements:
 #         HEROKU COMMANDS
 # ----------------------------------
 
+streamlit:
+	-@streamlit run ux.py
+
+streamlit_video:
+	-@streamlit run ux_video.py
+
 streamlit_main_ui:
-	-@streamlit run interface/ui_main.py --server.port 8503
+	-@streamlit run interface/ui_main.py
 
 # ----------------------------------
 #    LOCAL INSTALL COMMANDS
