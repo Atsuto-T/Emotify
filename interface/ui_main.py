@@ -2,14 +2,13 @@
 #          LIBRARY AND MODULE IMPORTS
 #---------------------------------------------------
 import streamlit as st
-# import numpy as np
-
+import threading
 import time
 import os
 # import base64
 # import tempfile
 
-from streamlit_webrtc import webrtc_streamer
+from streamlit_webrtc import webrtc_streamer, WebRtcMode, WebRtcStreamerContext
 
 import instructions
 import regarding_spotify_interact
@@ -40,6 +39,13 @@ from alternative_input_preproc import is_image, image_to_video, save_uploaded_fi
 OUTPUT_VIDEO_PATH = os.environ.get("VIDEO_PATH")
 duration = 10
 
+lock = threading.Lock()
+img_container = {"img": None}
+
+MEDIA_STREAM_CONSTRAINTS = {
+    "video": True,  # Capture video
+    "audio": False,  # Disable audio
+}
 #---------------------------------------------------
 #            PLAYLIST GENERATION FUNCTION
 #---------------------------------------------------
@@ -159,6 +165,15 @@ def reset_app():
     # Reload the entire page
     st.experimental_rerun()
 
+#---------------------------------------------------
+#           VIDEO RECORDING FUNCTIONS
+#---------------------------------------------------
+def video_frame_callback(frame):
+    img = frame.to_ndarray(format="bgr24")
+    with lock:
+        img_container["img"] = img
+
+    return frame
 
 #---------------------------------------------------
 #           FORM SUBMIT FUNCTIONS
@@ -358,9 +373,14 @@ with col1_vid:
     #------------Camera Recoding-------------#
     st.write("Record a short video of your face showing your current emotion")
 
-    ctx = webrtc_streamer(key="face_rec",
-                          video_processor_factory=VideoRecorder,
-                          )
+    #initialize video recording
+    # video_recorder = VideoRecorder()
+
+    video_recorder = VideoRecorder()
+
+    ctx = webrtc_streamer(key="sendonly-video",
+                        video_frame_callback=video_recorder.recv,
+                        video_processor_factory=lambda: video_recorder)
     #to do: check ctx object if its returning an openable video
     # >>> modify webcam.py module
 
@@ -376,23 +396,30 @@ with col1_vid:
     #--------------------------------------#
     #            RECORDING
     #--------------------------------------#
+    # while ctx.state.playing:
+    #     with lock:
+    #         img = img_container["img"]
+    #     if img is None:
+    #         continue
+
     #define video recording variable
     video_cap = None
 
     if start:
-        #start recording webcam stream
-        ctx.video_processor.start_recording()
+        video_recorder.start_recording()
         st.write("🎥 Recording in Session...")
 
     if stop:
-        #stop recording webcam stream
-        video_cap = ctx.video_processor.stop_recording()
-        st.write("💾 Recording Saved!")
+        video_file_path = video_recorder.stop_recording()
+        if video_file_path:
+            st.write("💾 Recording Saved!")  # Indicate successful saving
+        else:
+            st.write("Recording is not started!")  # Indicate no recording started
 
     while True:
-        if ctx.video_processor is not None and ctx.video_processor.recording:
+        if video_recorder.recording:
             time.sleep(1)
-            progress_bar.progress(ctx.video_processor.frame_count / 30)
+            progress_bar.progress(video_recorder.frame_count / 30)
         else:
             break
 
