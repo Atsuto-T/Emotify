@@ -107,19 +107,6 @@ def generate_playlist(emotion_df, account_name):
     -ID of the playlist will be fed to send_playlist_id function
     -title_list will be fed to UX module.'''
 
-<<<<<<< HEAD
-    sp = spotipy.Spotify(
-        auth_manager=SpotifyOAuth(
-            scope="playlist-modify-public",
-            redirect_uri=REDIRECT_URI,
-            client_id=SPOTIFY_CLIENT_ID,
-            client_secret=SPOTIFY_SECRET,
-            show_dialog=True,
-            cache_path="token.txt",
-            username=SPOTIFY_USERNAME,
-        )
-    )
-=======
     # sp = spotipy.Spotify(
     #     auth_manager=SpotifyOAuth(
     #         scope="playlist-modify-public",
@@ -157,7 +144,6 @@ def generate_playlist(emotion_df, account_name):
         # Use the access token to create a Spotify object
         sp = spotipy.Spotify(auth=access_token)
         st.success("Successfully authenticated with Spotify!")
->>>>>>> bec922bd01ca4e2c4122bd9308d7a5f4e6aaee11
 
     user_id = sp.current_user()["id"]
     tailor_object = emotion_df
