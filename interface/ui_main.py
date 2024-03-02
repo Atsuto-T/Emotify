@@ -46,6 +46,23 @@ MEDIA_STREAM_CONSTRAINTS = {
     "video": True,  # Capture video
     "audio": False,  # Disable audio
 }
+
+emotion_emoji = {
+    'Neutral': "https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif",
+    'Happiness': "https://media.giphy.com/media/DIgT73ICZOOZqNCNs7/giphy.gif",
+    'Sadness': "https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif",
+    'Surprise': "https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif",
+    'Fear': "https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif",
+    'Disgust': "https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif",
+    'Anger': "https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif"
+    }
+
+#---------------------------------------------------
+#gif embedding:
+
+#<iframe src="https://giphy.com/embed/DIgT73ICZOOZqNCNs7" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/smile-smiling-smiley-DIgT73ICZOOZqNCNs7">via GIPHY</a></p>
+
+
 #---------------------------------------------------
 #            PLAYLIST GENERATION FUNCTION
 #---------------------------------------------------
@@ -72,17 +89,9 @@ def gen_playlist_ui(mood_dict):
 
 def show_playlist(playlist, playlist_url):
     #shows the embedded playlist preview from spotify
-    #------------emotions-------------------
-    user_emotion = {
-        'mood_Calm': "Serene",
-        'mood_Energetic': "Dynamic",
-        'mood_Happy': "Blissful",
-        'mood_Sad': "Melancholic"
-        }
 #-------------------------------------------
     dominant_emotion = playlist[3]
-    emotion_title = user_emotion.get(dominant_emotion, "Unknown Emotion")
-    st.subheader(f"Here's a {emotion_title} playlist for you!")
+    st.subheader(f"Here's your playlist!")
     #to do: change identified emotion to emotion returned from emotion_detect function
 
     #embedd to spotify interface; to do: check if there are other ways to do this
@@ -333,18 +342,29 @@ with col3:
 
         if input_file:
             st.subheader(" ")
-            st.write("Image converted into video file...")
+            st.write("Extracting emotion from image...")
             time.sleep(2)
             emotion = extract_emotion(input_file=input_file)
 
+            col3_text, col3_emo = col3.columns(2)
+
             if emotion:
                 emo_key = next(iter(emotion[0]))
-                st.write(f"Emotion Extracted: {emo_key}")
+                for gif in emotion_emoji:
+                    if emo_key == gif:
+                        col3_text.subheader(f"Emotion Extracted:")
+                        col3_text.markdown(f"""
+                        <h1 style="font-size: 30px; text-align: center; color: #faaa0b; font-family: Trebuchet MS">
+                        {emo_key}
+                        </h1>
+                        """, unsafe_allow_html=True)
+                        col3_emo.markdown(f"![Alt Text]({emotion_emoji[gif]})", unsafe_allow_html=True)
+
 
             #playlist generation function
                 with st.spinner("Transforming Emotions into Melodies..."):
                     # to improve: change into progress bar/ specify state after merging other functions
-                    time.sleep(3)  # simulate playlist generation time
+                    time.sleep(1)  # simulate playlist generation time
                     playlist, playlist_url = gen_playlist_ui(emotion)
                     show_playlist(playlist=playlist, playlist_url=playlist_url)
 
@@ -490,6 +510,7 @@ with col3_vid:
                 if emotion:
                     emo_key = next(iter(emotion[0]))
                     st.write(f"Emotion Extracted: {emo_key}")
+
 
                 #playlist generation function
                     with st.spinner("Transforming Emotions into Melodies..."):
