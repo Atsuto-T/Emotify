@@ -5,7 +5,8 @@ import streamlit as st
 import threading
 import time
 import os
-# import base64
+from PIL import Image
+import base64
 # import tempfile
 
 from streamlit_webrtc import webrtc_streamer, WebRtcMode, WebRtcStreamerContext
@@ -48,20 +49,25 @@ MEDIA_STREAM_CONSTRAINTS = {
 }
 
 emotion_emoji = {
-    'Neutral': "https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif",
+    'Neutral': "https://giphy.com/embed/WtUJnCSEWWCAdHb90r/giphy.gif",
     'Happiness': "https://media.giphy.com/media/DIgT73ICZOOZqNCNs7/giphy.gif",
-    'Sadness': "https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif",
-    'Surprise': "https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif",
-    'Fear': "https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif",
-    'Disgust': "https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif",
-    'Anger': "https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif"
+    'Sadness': "https://giphy.com/embed/jTwn7gnUDBLf84cKdn/giphy.gif",
+    'Surprise': "https://giphy.com/embed/JIFYGMimGZhbxMh6J5/giphy.gif",
+    'Fear': "https://giphy.com/embed/cURhR2qbi437KbcuuP/giphy.gif",
+    'Disgust': "https://giphy.com/embed/0xslhbGyYaBudd8Ke9/giphy.gif",
+    'Anger': "https://giphy.com/embed/On3RvLqXiRIxW/giphy.gif"
     }
 
 #---------------------------------------------------
 #gif embedding:
 
-#<iframe src="https://giphy.com/embed/DIgT73ICZOOZqNCNs7" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/smile-smiling-smiley-DIgT73ICZOOZqNCNs7">via GIPHY</a></p>
-
+#Neutral: <iframe src="https://giphy.com/embed/WtUJnCSEWWCAdHb90r" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/SportsManias-emoji-sportsmanias-animated-emojis-WtUJnCSEWWCAdHb90r">via GIPHY</a></p>
+#Happy: <iframe src="https://giphy.com/embed/DIgT73ICZOOZqNCNs7" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/smile-smiling-smiley-DIgT73ICZOOZqNCNs7">via GIPHY</a></p>
+#Sadness: <iframe src="https://giphy.com/embed/jTwn7gnUDBLf84cKdn" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/sad-face-cute-grumpy-jTwn7gnUDBLf84cKdn">via GIPHY</a></p>
+#Surprise: <iframe src="https://giphy.com/embed/JIFYGMimGZhbxMh6J5" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/SAZKA-loterie-lotery-sportkamicek-JIFYGMimGZhbxMh6J5">via GIPHY</a></p>
+#Fear: <iframe src="https://giphy.com/embed/cURhR2qbi437KbcuuP" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/smiley-peur-cURhR2qbi437KbcuuP">via GIPHY</a></p>
+#Disgust: <iframe src="https://giphy.com/embed/0xslhbGyYaBudd8Ke9" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/vomit-barf-spew-0xslhbGyYaBudd8Ke9">via GIPHY</a></p>
+#Anger: <iframe src="https://giphy.com/embed/On3RvLqXiRIxW" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/fire-mad-anger-On3RvLqXiRIxW">via GIPHY</a></p>
 
 #---------------------------------------------------
 #            PLAYLIST GENERATION FUNCTION
@@ -87,18 +93,24 @@ def gen_playlist_ui(mood_dict):
 
     return playlist, playlist_url
 
-def show_playlist(playlist, playlist_url):
+def show_playlist(playlist_url):
     #shows the embedded playlist preview from spotify
 #-------------------------------------------
-    dominant_emotion = playlist[3]
     st.subheader(f"Here's your playlist!")
     #to do: change identified emotion to emotion returned from emotion_detect function
 
     #embedd to spotify interface; to do: check if there are other ways to do this
-    st.write("Add this playlist to your Spotify library!")
+    st.write("Click \"...\" to redirect to your Spotify library!")
 
-    st.markdown(f'<iframe src={playlist_url} width="500" height="400"></iframe>',
-    unsafe_allow_html=True)
+    # Create HTML to display the iframe with centered alignment
+    embedd_playlist = f'''
+    <div style="display: flex; justify-content: center;">
+        <iframe src="{playlist_url}" width="850" height="400"></iframe>
+    </div>
+    '''
+
+    # Display the HTML using st.markdown()
+    st.markdown(embedd_playlist, unsafe_allow_html=True)
 
     st.write(" ")
 
@@ -145,8 +157,11 @@ def reset_img():
     #clear all session states
     st.session_state.clear()
 
-    # Reload the entire page
-    st.experimental_rerun()
+    # Execute JavaScript to reload the page
+    st.write(
+        "<script>window.location.reload(true);</script>",
+        unsafe_allow_html=True
+    )
 
 
 def clear_vidrec_folder():
@@ -179,6 +194,14 @@ def reset_app():
 
     # Reload the entire page
     st.experimental_rerun()
+
+#---------------------------------------------------
+#           CAMERA CAPTURE FUNCTIONS
+#---------------------------------------------------
+#function to flip the camera image
+def flip_image(image):
+    return image.rotate(180)
+
 
 #---------------------------------------------------
 #           VIDEO RECORDING FUNCTIONS
@@ -288,17 +311,18 @@ with col1:
         #image_upload function using file_uploader widget
         st.session_state["upload_image"] = None
 
-        col_submit, col_blank, col_reset_img = st.columns([2, 1, 3])
+        col_submit, col_blank, col_reset_img = st.columns([2, 2, 1.2])
 
         submit_button = col_submit.form_submit_button("▶ Generate Playlist",
                                                       args=[image_captured, uploaded_image],
                                                       )
         #submit button as entry for file extraction to image/video model pipe
 
-        reset_button = col_reset_img.form_submit_button("↺ Clear Image and Reset Form",
+        reset_button = col_reset_img.form_submit_button("↺ Reset",
                                                         args=[image_captured, uploaded_image],
                                                         on_click=reset_img_form,
-                                                        use_container_width=True)
+                                                        use_container_width=True
+                                                        )
         #buttton to clear all images
 
     if submit_button:
@@ -342,31 +366,41 @@ with col3:
 
         if input_file:
             st.subheader(" ")
-            st.write("Extracting emotion from image...")
-            time.sleep(2)
-            emotion = extract_emotion(input_file=input_file)
-
-            col3_text, col3_emo = col3.columns(2)
+            with st.spinner("Extracting emotion from image..."):
+                time.sleep(2)
+                emotion = extract_emotion(input_file=input_file)
 
             if emotion:
                 emo_key = next(iter(emotion[0]))
                 for gif in emotion_emoji:
                     if emo_key == gif:
-                        col3_text.subheader(f"Emotion Extracted:")
-                        col3_text.markdown(f"""
+                        st.markdown(f"""
                         <h1 style="font-size: 30px; text-align: center; color: #faaa0b; font-family: Trebuchet MS">
-                        {emo_key}
+                        Emotion Extracted: {emo_key}
                         </h1>
                         """, unsafe_allow_html=True)
-                        col3_emo.markdown(f"![Alt Text]({emotion_emoji[gif]})", unsafe_allow_html=True)
+                        st.write(" ")
+
+                        img_col, emo_col = col3.columns(2)
+
+                        show_gif = emo_col.container(height=250, border=True)
+                        show_gif.markdown(f"""
+                        <div style="display: flex; justify-content: center;">
+                            <img src="{emotion_emoji[gif]}" alt="GIF" style="width: 55%;">
+                        </div>
+                        """, unsafe_allow_html=True)
+                        show_img = img_col.container(border=True)
+                        show_img.image(user_image)
+
 
 
             #playlist generation function
+                st.subheader(" ")
                 with st.spinner("Transforming Emotions into Melodies..."):
                     # to improve: change into progress bar/ specify state after merging other functions
                     time.sleep(1)  # simulate playlist generation time
                     playlist, playlist_url = gen_playlist_ui(emotion)
-                    show_playlist(playlist=playlist, playlist_url=playlist_url)
+                    show_playlist(playlist_url=playlist_url)
 
 
     else:
@@ -394,31 +428,31 @@ col1.write(" ") #line break
 with col1_vid:
     #might need to add a container
 
-    st.subheader("Take a face recording!")
+    st.subheader("Upload a face recording!")
     #user input panel subheader
 
     #------------Camera Recoding-------------#
-    st.write("Record a short video of your face showing your current emotion")
+    st.write("Choose a pre-recorded video of your face showing your current emotion and upload it below!")
 
     #initialize video recording
     # video_recorder = VideoRecorder()
 
-    video_recorder = VideoRecorder()
+    # video_recorder = VideoRecorder()
 
-    ctx = webrtc_streamer(key="sendonly-video",
-                        video_frame_callback=video_recorder.recv,
-                        video_processor_factory=lambda: video_recorder)
-    #to do: check ctx object if its returning an openable video
-    # >>> modify webcam.py module
+    # ctx = webrtc_streamer(key="sendonly-video",
+    #                     video_frame_callback=video_recorder.recv,
+    #                     video_processor_factory=lambda: video_recorder)
+    # #to do: check ctx object if its returning an openable video
+    # # >>> modify webcam.py module
 
-    #create start and stop buttons in seprate colums
-    start = st.button('🔴 Start Face Recording',
-                                   use_container_width=True)
-    stop = st.button('🟢 Stop Face Recording',
-                                  use_container_width=True)
+    # #create start and stop buttons in seprate colums
+    # start = st.button('🔴 Start Face Recording',
+    #                                use_container_width=True)
+    # stop = st.button('🟢 Stop Face Recording',
+    #                               use_container_width=True)
 
-    #progress bar to show start and stop of video recording
-    progress_bar = st.progress(0)
+    # #progress bar to show start and stop of video recording
+    # progress_bar = st.progress(0)
 
     #--------------------------------------#
     #            RECORDING
@@ -430,28 +464,28 @@ with col1_vid:
     #         continue
 
     #define video recording variable
-    video_cap = None
+    # video_cap = None
 
-    if start:
-        video_recorder.start_recording()
-        st.write("🎥 Recording in Session...")
+    # if start:
+    #     video_recorder.start_recording()
+    #     st.write("🎥 Recording in Session...")
 
-    if stop:
-        video_file_path = video_recorder.stop_recording()
-        if video_file_path:
-            st.write("💾 Recording Saved!")  # Indicate successful saving
-        else:
-            st.write("Recording is not started!")  # Indicate no recording started
+    # if stop:
+    #     video_file_path = video_recorder.stop_recording()
+    #     if video_file_path:
+    #         st.write("💾 Recording Saved!")  # Indicate successful saving
+    #     else:
+    #         st.write("Recording is not started!")  # Indicate no recording started
 
-    while True:
-        if video_recorder.recording:
-            time.sleep(1)
-            progress_bar.progress(video_recorder.frame_count / 30)
-        else:
-            break
+    # while True:
+    #     if video_recorder.recording:
+    #         time.sleep(1)
+    #         progress_bar.progress(video_recorder.frame_count / 30)
+    #     else:
+    #         break
 
-    # Reset the progress bar
-    progress_bar.progress(0)
+    # # Reset the progress bar
+    # progress_bar.progress(0)
 
     #------------video file submission-------------#
     with st.form("video_input"):
@@ -466,7 +500,7 @@ with col1_vid:
                                                       )
 
         #buttton to clear all video/s created or uploaded
-        vid_reset_button = vid_col_reset.form_submit_button("↺ Clear Image and Reset Form",
+        vid_reset_button = vid_col_reset.form_submit_button("↺ Reset",
                                                         args=[image_captured, uploaded_image],
                                                         on_click=reset_img_form,
                                                         use_container_width=True)
@@ -497,29 +531,29 @@ col1_vid.caption("Application Accuracy: <80.56%>")
 with col3_vid:
     st.subheader(" ")
 # Display generated playlist
-    if video_cap:
+    # if video_cap:
 
-        input_file = video_cap
+    #     input_file = video_cap
 
-        if input_file:
-            st.subheader(" ")
-            with st.spinner("Reading emotion from webcam recording..."):
-                time.sleep(2)
-                emotion = extract_emotion(input_file=input_file)
+    #     if input_file:
+    #         st.subheader(" ")
+    #         with st.spinner("Reading emotion from webcam recording..."):
+    #             time.sleep(2)
+    #             emotion = extract_emotion(input_file=input_file)
 
-                if emotion:
-                    emo_key = next(iter(emotion[0]))
-                    st.write(f"Emotion Extracted: {emo_key}")
+    #             if emotion:
+    #                 emo_key = next(iter(emotion[0]))
+    #                 st.write(f"Emotion Extracted: {emo_key}")
 
 
-                #playlist generation function
-                    with st.spinner("Transforming Emotions into Melodies..."):
-                        # to improve: change into progress bar/ specify state after merging other functions
-                        time.sleep(3)  # simulate playlist generation time
-                        playlist, playlist_url = gen_playlist_ui(emotion)
-                        show_playlist(playlist=playlist, playlist_url=playlist_url)
+    #             #playlist generation function
+    #                 with st.spinner("Transforming Emotions into Melodies..."):
+    #                     # to improve: change into progress bar/ specify state after merging other functions
+    #                     time.sleep(3)  # simulate playlist generation time
+    #                     playlist, playlist_url = gen_playlist_ui(emotion)
+    #                     show_playlist(playlist_url=playlist_url)
 
-    elif uploaded_video:
+    if uploaded_video:
 
         input_file_upload = uploaded_vid_file
 
