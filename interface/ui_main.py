@@ -93,36 +93,36 @@ def show_playlist(playlist, playlist_url):
 
     st.write(" ")
 
-    col_regen, col_blank1, col_reset = st.columns([2,1,3])
+    # col_regen, col_blank1, col_reset = st.columns([2,1,3])
 
-    with col_regen:
-        #regenerate playlist using the same image
-        if st.button("🔂 Regenerate Playlist",
-                     key="regenerate",
-                     use_container_width=True):
-            regen_playlist()
+    # with col_regen:
+    #     #regenerate playlist using the same image
+    #     if st.button("🔂 Regenerate Playlist",
+    #                  key="regenerate",
+    #                  use_container_width=True):
+    #         regen_playlist()
 
-    with col_reset:
-        #reset entire playlist generation process
-        if st.button('⌛ Reset Entire Generation Process',
-                     key='reset',
-                     use_container_width=True):
-            # revert session state variables to none
-            st.session_state["playlist"] = None
-            st.session_state["playlist_url"] = None
-            st.session_state["emotion"] = None
-            st.session_state["input_file"] = None
-            st.session_state["byte_image"] = None
-            reset_app()
-            clear_vidrec_folder()
+    # with col_reset:
+    #     #reset entire playlist generation process
+    #     if st.button('⌛ Reset Entire Generation Process',
+    #                  key='reset',
+    #                  use_container_width=True):
+    #         # revert session state variables to none
+    #         st.session_state["playlist"] = None
+    #         st.session_state["playlist_url"] = None
+    #         st.session_state["emotion"] = None
+    #         st.session_state["input_file"] = None
+    #         st.session_state["byte_image"] = None
+    #         reset_app()
+    #         clear_vidrec_folder()
         #---------------------------------------------------
 #           APP RESET AND REGEN FUNCTIONS
 #---------------------------------------------------
 
-def regen_playlist():
-    # Clear Streamlit cache
-    st.session_state.clear()
-    st.write("generated a new playlist")
+# def regen_playlist():
+#     # Clear Streamlit cache
+#     st.session_state.clear()
+#     st.write("generated a new playlist")
 
 def reset_img():
     # Reset uploaded image
@@ -132,6 +132,12 @@ def reset_img():
     # Remove the saved image and media files
     clear_uploads_folder()
     clear_vidrec_folder()
+
+    #clear all session states
+    st.session_state.clear()
+
+    # Reload the entire page
+    st.experimental_rerun()
 
 
 def clear_vidrec_folder():
@@ -186,6 +192,7 @@ def reset_img_form(image_captured, uploaded_image):
 #          PAGE CONFIGURATIONS ETC.
 #---------------------------------------------------
 
+#this is seen in the tab bar of the webpage
 st.set_page_config(page_title="<Music Selector Name>", page_icon=":musical_note:", layout="wide")
 
 #----------------------------------
@@ -203,7 +210,7 @@ with st.sidebar:
                                                  ])
     #drop down option for Q&As
 
-    if page == "How to generate your playlist?":
+    if page == "How to use this application?":
         instructions.instructions_page()
     if page == "How to add playlist to your Spotify library?":
         regarding_spotify_interact.spotify_page()
