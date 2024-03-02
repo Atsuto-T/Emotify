@@ -1,7 +1,3 @@
-# from read_video_file_ok.py for push.
-# to be converted to package later on...
-
-import os
 import tensorflow as tf
 import keras
 from keras.models import Model
@@ -329,8 +325,6 @@ def input_file_proc(input_file):
     # Determine input file type (video or photo)
     # If input is a photo, convert to video and save as input_file.avi
     if input_file[dot_locate:] in READABLE_IMGS :
-        # image = Image.open(input_file)
-        # image_array = np.array(image)
         img_array = []
         img = cv2.imread(input_file) #cv2.imread(input_file, cv2.IMREAD_COLOR)
         height, width, layers = img.shape
@@ -647,24 +641,3 @@ def extract_emotion(input_file):
 #|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||#
 #########################################################################
 #-----------------------------------------------------------------------#
-###Edited by Atsuto-T###
-def export_emotion(input_file, lstm_features=None):
-
-    if lstm_features is None:
-        lstm_features = []
-
-    input_file = input_file
-    #this input file should be a video file; or an image converted to a video file already.
-
-
-    #picture
-    pth_backbone_model = ResNet50(7, channels=3)
-    pth_backbone_model.load_state_dict(torch.load('face_detect_module/model_files/FER_static_ResNet50_AffectNet.pt'))
-    pth_backbone_model.eval()
-    #video
-    pth_LSTM_model = LSTMPyTorch()
-    pth_LSTM_model.load_state_dict(torch.load('face_detect_module/model_files/FER_dinamic_LSTM_{0}.pt'.format(name_LSTM_model)))
-    pth_LSTM_model.eval()
-
-    emotion_weight = extract_emotion(input_file=input_file)
-    return emotion_weight

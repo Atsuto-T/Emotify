@@ -5,22 +5,11 @@ from playlist_module.params import *
 from playlist_module.genre import get_genre
 from sklearn.metrics import mean_squared_error
 
-# from face_detect_module.face_emotion_detector import export_emotion
-
-
-# emotion = {'Sadness': [0.2,1],
-#                     'Surprise': [0.19, 0.2, 0.21, 0.21, 0.2, 0.21, 0.24, 0.23, 0.24, 0.24, 0.24, 0.25, 0.24, 0.22, 0.2,\
-#                         0.24, 0.26, 0.29, 0.27, 0.27, 0.27, 0.25, 0.28, 0.32, 0.36, 0.4, 0.43, 0.44, 0.45, 0.43, 0.42, 0.38, 0.34, 0.31, 0.27, 0.24, 0.23, 0.23],
-#                     'Anger': [0.21,1,1,1,1],
-#                     'Neutral': [0.19,1,1,1,1,1,1,1,1,1,1,1,1]}
-
 def process_emotion(emotion):
     '''This function imports emotion_weights from face_detect_module and outputs
     which emotion was dominant in the video clip.'''
 
     import_emotion = emotion
-
-    # imported_emotion = {key:len(value) for key,value in import_emotion.items()}
     imported_emotion = {}
     for dictionary in import_emotion:
         for key, value in dictionary.items():
@@ -47,8 +36,6 @@ def process_emotion(emotion):
 
     return dominant_emotion,user_emotion
 
-# process_emo = process_emotion(emotion=emotion)
-
 def tailor_df(process_emo_out):
     '''This function takes emotion input from facial recognition
     and outputs a dataframe tailored for that emotion'''
@@ -63,21 +50,6 @@ def tailor_df(process_emo_out):
 
     mood_df = df.sort_values('target_distance').head(50)
     print(mood_df['name'].head())
-
-    #Select genres that user likes
-    # user_genre = get_genre()
-
-    # def check_genre(list,set=user_genre):
-    #     boolean_list=[]
-    #     for element in list:
-    #         if not element:
-    #             boolean_list.append(element in set)
-    #     if sum(boolean_list) >= 1:
-    #         return True
-
-    # df = df[df['track_genre_split'].apply(check_genre)]
-
-    # print(df.shape)
 
     return mood_df,user_emotion
 
@@ -101,9 +73,6 @@ def generate_playlist(emotion_df, account_name):
             username=SPOTIFY_USERNAME,
         )
     )
-
-    # access_token = sp.get_access_token()
-    # refresh_token = sp.get_refresh_token()
 
     user_id = sp.current_user()["id"]
     tailor_object = emotion_df #tailor_df()
@@ -162,10 +131,3 @@ def send_playlist_id(generated_playlist, account_name):
         print(f"Playlist '{playlist_name}' not found in your account.")
 
     return playlist_url
-
-
-# if __name__=="__main__":
-
-#     # Account_name will be fed from UX module.
-#     # Emotion will be fed from Facial Recognition module.
-#     send_playlist_id(generated_playlist=generate_playlist, account_name=account_name)
