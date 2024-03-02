@@ -7,13 +7,12 @@ instructions = [
 
 def instructions_page():
 
-
     col_ex1, col_ex2 = st.columns([0.5, 2])
     #step 1
     col_ex1.write(" ")
     col_ex1.image("interface/images/upload_icon.png")
     col_ex2.write(" ")
-    col_ex2.write("Upload a photo or video showing your face.")
+    col_ex2.write("Take a camera capture or upload a picture showing your face.")
     #step 2
     col_ex1.subheader(" ")
     col_ex1.image("interface/images/click_submit_icon.png")
